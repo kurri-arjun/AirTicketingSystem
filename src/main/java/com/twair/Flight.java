@@ -12,7 +12,13 @@ public class Flight {
         this.destination = destination;
         this.plane = plane;
         this.number = number;
-        this.availableSeats = seats;
+        if(seats >=1) {
+            this.availableSeats = seats;
+        }
+        else
+        {
+            this.availableSeats = 0;
+        }
     }
 
     public String getSource() {

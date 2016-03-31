@@ -17,9 +17,31 @@ public class FlightTests {
     }
 
     @Test
-    public void shouldHaveSourceDestination() throws Exception {
+    public void testFlightHaveSource() throws Exception {
         Flight flight = new Flight("F001", source, dest, plane, 10);
         Assert.assertEquals(source, flight.getSource());
+    }
+
+    @Test
+    public void testFlightHaveDestination() throws Exception {
+        Flight flight = new Flight("F001", source, dest, plane, 10);
         Assert.assertEquals(dest, flight.getDestination());
+    }
+
+    @Test
+    public void testFlightHaveNumber() throws Exception {
+        Flight flight = new Flight("F001", source, dest, plane, 10);
+        Assert.assertEquals("F001", flight.getNumber());
+    }
+
+    @Test
+    public void testFlightAvailableSeats() throws Exception {
+        Flight flight = new Flight("F001", source, dest, plane, 10);
+        Assert.assertEquals(10, flight.getAvailableSeats());
+    }
+    @Test
+    public void testFlightAvailableSeats_NegativeScenario() throws Exception {
+        Flight flight = new Flight("F001", source, dest, plane, -5);
+        Assert.assertEquals(0, flight.getAvailableSeats());
     }
 }

@@ -4,7 +4,7 @@ public class SearchForm {
     private String from;
     private String to;
     private String number;
-    private int passengersCount;
+    private int passengers;
 
     public String getFrom() {
         return from;
@@ -30,13 +30,13 @@ public class SearchForm {
         this.number = number;
     }
 
-    public int getPassengersCount()
+    public int getPassengers()
     {
-        return this.passengersCount;
+        return this.passengers;
     }
 
-    public void setPassengersCount(int count)
+    public void setPassengers(int count)
     {
-        this.passengersCount = count;
+        this.passengers = count;
     }
 }

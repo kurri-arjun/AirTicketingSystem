@@ -29,10 +29,10 @@ public class FlightSearch {
     }
 
     public FlightSearch byLocationAndAvailableSeats(String source, String destination, int passengerCount) {
-        if(source == null || source.isEmpty() || destination == null || destination.isEmpty()) {
+        if(source == null || source.isEmpty() || destination == null || destination.isEmpty() || passengerCount < 0) {
             throw new IllegalArgumentException("source cannot be null");
         }
-        if(passengerCount <=0 )
+        if(passengerCount ==0 )
         {
             passengerCount = 1;
         }

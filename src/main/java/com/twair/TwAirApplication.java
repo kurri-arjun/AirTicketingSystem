@@ -23,7 +23,7 @@ public class TwAirApplication {
 	public String search(@ModelAttribute(value="searchForm") SearchForm searchForm, Model model) throws Exception {
 		model.addAttribute("locations", DataSource.instance().fetchLocations());
 		try {
-			FlightSearch matchingFlights = DataSource.instance().fetchFlights().byLocationAndAvailableSeats(searchForm.getFrom(), searchForm.getTo(), searchForm.getPassengersCount());
+			FlightSearch matchingFlights = DataSource.instance().fetchFlights().byLocationAndAvailableSeats(searchForm.getFrom(), searchForm.getTo(), searchForm.getPassengers());
 			model.addAttribute("flights", matchingFlights.getFlightList());
 		}catch (Exception e) {
 			e.printStackTrace();

@@ -55,4 +55,33 @@ public class FlightSearchTests {
     public void destinationCannotBeEmpty() throws Exception {
         allFlights.byLocation(source, "");
     }
+
+    @Test
+    public void testListofFlightsReturnedBySearch()
+    {
+        List<Flight> flights = allFlights.byLocationAndAvailableSeats(source, destination, 10).getFlightList();
+        Assert.assertEquals(1, flights.size());
+        Assert.assertEquals(source, flights.get(0).getSource());
+        Assert.assertEquals(destination, flights.get(0).getDestination());
+    }
+
+    @Test
+    public void testListofFlightsReturnedBySearch_1()
+    {
+        List<Flight> flights = allFlights.byLocationAndAvailableSeats(source, destination, 150).getFlightList();
+        Assert.assertEquals(0, flights.size());
+    }
+
+    @Test
+    public void testListofFlightsReturnedBySearch_2()
+    {
+        List<Flight> flights = allFlights.byLocationAndAvailableSeats(source, destination, 0).getFlightList();
+        Assert.assertEquals(2, flights.size());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testListofFlightsReturnedBySearch_NegativeScenario()
+    {
+        List<Flight> flights = allFlights.byLocationAndAvailableSeats(source, destination, -150).getFlightList();
+    }
 }
