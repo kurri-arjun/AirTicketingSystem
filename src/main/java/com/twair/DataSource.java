@@ -26,13 +26,14 @@ public class DataSource {
         List<Flight> flightList = new ArrayList<>();
         List<Plane> planes = fetchPlanes();
         List<String> locations = fetchLocations();
-        Flight flight1 = new Flight("F001", locations.get(0), locations.get(1), planes.get(0), 12);
-        Flight flight2 = new Flight("F002", locations.get(0), locations.get(1), planes.get(1), 112);
-        Flight flight3 = new Flight("F003", locations.get(0), locations.get(1), planes.get(1), 0);
-        Flight flight4 = new Flight("F004", locations.get(0), locations.get(1), planes.get(0), 25);
-        Flight flight5 = new Flight("F005", locations.get(0), locations.get(1), planes.get(0), 8);
-        Flight flight6 = new Flight("F006", locations.get(0), locations.get(1), planes.get(0), 0);
-        Flight flight7 = new Flight("F007", locations.get(0), locations.get(1), planes.get(0), 54);
+        Date flightStartDate = new Date(2016, 04, 01);
+        Flight flight1 = new Flight("F001", locations.get(0), locations.get(1), planes.get(0), 12, flightStartDate);
+        Flight flight2 = new Flight("F002", locations.get(0), locations.get(1), planes.get(1), 112, flightStartDate);
+        Flight flight3 = new Flight("F003", locations.get(0), locations.get(1), planes.get(1), 0, flightStartDate);
+        Flight flight4 = new Flight("F004", locations.get(0), locations.get(1), planes.get(0), 25, flightStartDate);
+        Flight flight5 = new Flight("F005", locations.get(0), locations.get(1), planes.get(0), 8, flightStartDate);
+        Flight flight6 = new Flight("F006", locations.get(0), locations.get(1), planes.get(0), 0, flightStartDate);
+        Flight flight7 = new Flight("F007", locations.get(0), locations.get(1), planes.get(0), 54,flightStartDate);
 
         flightList.add(flight1);
         flightList.add(flight2);

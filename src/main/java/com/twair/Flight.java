@@ -1,13 +1,16 @@
 package com.twair;
 
+import java.util.Date;
+
 public class Flight {
     private String source;
     private String destination;
     private Plane plane;
     private String number;
     private int availableSeats;
+    private Date startDate;
 
-    public Flight(String number, String source, String destination, Plane plane, int seats) throws Exception {
+    public Flight(String number, String source, String destination, Plane plane, int seats, Date date) throws Exception {
         this.source = source;
         this.destination = destination;
         this.plane = plane;
@@ -19,6 +22,7 @@ public class Flight {
         {
             this.availableSeats = 0;
         }
+        this.startDate = date;
     }
 
     public String getSource() {
@@ -35,5 +39,9 @@ public class Flight {
 
     public int getAvailableSeats() {
         return availableSeats;
+    }
+
+    public Date getStartDate() {
+        return startDate;
     }
 }

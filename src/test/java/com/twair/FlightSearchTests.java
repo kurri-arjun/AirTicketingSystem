@@ -15,10 +15,11 @@ public class FlightSearchTests {
     public void setUp() throws Exception {
         source = "TestSource";
         destination = "TestDestination";
+        Date flightStartDate = new Date(2016, 04, 02);
         Plane plane1 = new Plane("type1", 10);
-        Flight flight1 = new Flight("F001", source, destination, plane1, 01);
-        Flight flight2 = new Flight("F002", "TestSource1", destination, plane1, 100);
-        Flight flight3 = new Flight("F003", source, destination, plane1, 125);
+        Flight flight1 = new Flight("F001", source, destination, plane1, 01, flightStartDate);
+        Flight flight2 = new Flight("F002", "TestSource1", destination, plane1, 100, flightStartDate);
+        Flight flight3 = new Flight("F003", source, destination, plane1, 125, flightStartDate);
         List<Flight> flightList = new ArrayList<>();
         flightList.add(flight1);
         flightList.add(flight2);
@@ -83,5 +84,31 @@ public class FlightSearchTests {
     public void testListofFlightsReturnedBySearch_NegativeScenario()
     {
         List<Flight> flights = allFlights.byLocationAndAvailableSeats(source, destination, -150).getFlightList();
+    }
+
+    @Test
+    public void testListofFlightsReturnedBySearchUsingDate()
+    {
+        Date date = new Date(2016, 04, 02);
+        List<Flight> flights = allFlights.searchByDate(date).getFlightList();
+        Assert.assertEquals(3, flights.size());
+        Assert.assertEquals(source, flights.get(0).getSource());
+        Assert.assertEquals(destination, flights.get(0).getDestination());
+        Assert.assertTrue(date.equals(flights.get(0).getStartDate()));
+    }
+
+    @Test
+    public void testSearchListOfFlightsBasedOnStartDate_NoMatchesFound()
+    {
+        Date date = new Date(2016, 03, 30);
+        List<Flight> flights = allFlights.searchByDate(date).getFlightList();
+        Assert.assertEquals(0, flights.size());
+    }
+
+    @Test
+    public void testSearchListOfFlightsBasedNullAsStartDate()
+    {
+        List<Flight> flights = allFlights.searchByDate(null).getFlightList();
+        Assert.assertEquals(0, flights.size());
     }
 }

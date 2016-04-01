@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Controller
 @EnableAutoConfiguration
@@ -24,6 +27,10 @@ public class TwAirApplication {
 		model.addAttribute("locations", DataSource.instance().fetchLocations());
 		try {
 			FlightSearch matchingFlights = DataSource.instance().fetchFlights().byLocationAndAvailableSeats(searchForm.getFrom(), searchForm.getTo(), searchForm.getPassengers());
+			String date = searchForm.getDate();
+			DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+			Date startDate = (Date)formatter.parse(date);
+			matchingFlights = matchingFlights.searchByDate(startDate);
 			model.addAttribute("flights", matchingFlights.getFlightList());
 		}catch (Exception e) {
 			e.printStackTrace();

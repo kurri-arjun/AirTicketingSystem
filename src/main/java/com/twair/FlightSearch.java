@@ -1,6 +1,7 @@
 package com.twair;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FlightSearch {
@@ -40,6 +41,21 @@ public class FlightSearch {
         for (Flight flight : flightList) {
             if (flight.getSource().equals(source) && flight.getDestination().equals(destination) && flight.getAvailableSeats()>=passengerCount) {
                 matchingFlights.add(flight);
+            }
+        }
+        return new FlightSearch(matchingFlights);
+    }
+
+    public FlightSearch searchByDate(Date date)
+    {
+        List<Flight> matchingFlights = new ArrayList<Flight>();
+        if(date != null) {
+            for (Flight flight : flightList) {
+                Date flightStartDate = flight.getStartDate();
+                if (date.getYear()==flightStartDate.getYear() && date.getMonth()==flightStartDate.getMonth()
+                        && date.getDay()==flightStartDate.getDay()) {
+                    matchingFlights.add(flight);
+                }
             }
         }
         return new FlightSearch(matchingFlights);
